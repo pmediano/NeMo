@@ -171,7 +171,6 @@ class Simulation:
 
 	__doc__ = _n.Simulation.__doc__
 
-	"""
 	def step_noinput(self):
 		return self._sim.step_noinput()
 
@@ -183,7 +182,6 @@ class Simulation:
 
 	def step_fi(self, fstim, istim):
 		return self._sim.step_fi(fstim, istim)
-	"""
 
 	def step(self, fstim=None, istim=None):
 		"""
@@ -200,13 +198,13 @@ class Simulation:
 			if (not isinstance(istim[0], tuple)) or (len(istim[0])!=2):
 				raise ValueError('Current input must be specified as a list of (idx, I) pairs, e.g. [(idx1, I1), (idx2, I2), ...]')
 	
-			if fstim:
+			if fstim is not None:
 				return self._sim.step_fi(firing_input, istim)
 			else:
 				return self._sim.step_i(istim)
 	
 		else:
-			if fstim:
+			if fstim is not None:
 				return self._sim.step_f(firing_input)
 			else:
 				return self._sim.step_noinput()
